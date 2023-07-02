@@ -1,25 +1,43 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Pedidos } from '@/interfaces/pedidos';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 
+export interface AppState {
+  pedidos: {
+    encargo: string;
+    recibe: string;
+    telefono: number;
+    direccion: string;
+    descripcion: string;
+    fecha?: Date
+  }[];
+}
 
 
 export const pedidosSlice = createSlice({
-    name: 'pedidos',
-    initialState: {
-        // El status de la app al iniciar
-        pedidos:{
-            
-        }
+  name: 'pedidos',
+  initialState: {
+    pedidos: [] as {
+      encargo: string;
+      recibe: string;
+      telefono: number;
+      direccion: string;
+      descripcion: string;
+      fecha?: Date
+    }[]
+  },
+  reducers: {
+    onAddPedido: (state, { payload }: PayloadAction<Pedidos>) => {
+      state.pedidos = [...state.pedidos, payload];
     },
-    reducers: {
-        increment: (state, action) => {
 
-        },
+    onGetPedidos: (state, { payload }) => {
+      state.pedidos = payload
     }
+  }
 });
 
-// Action creators are generated for each case reducer function
-export const { increment } = pedidosSlice.actions;
+export const { onAddPedido, onGetPedidos } = pedidosSlice.actions;
 
 // fecha: "",
 //             encargo: "",

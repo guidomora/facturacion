@@ -1,13 +1,15 @@
+import usePedidosStore from '@/hooks/usePedidosStore'
 import { Box, Button, Grid, TextField } from '@mui/material'
 import React, { ChangeEvent, FormEventHandler, useState } from 'react'
 
 
 
 const IndexInputs = () => {
+    const {startAddingPedidos} = usePedidosStore()
     const [forms, setForms] = useState({
         encargo: "",
         recibe: "",
-        telefono: "",
+        telefono: 0,
         direccion: "",
         descripcion: ""
     })
@@ -21,6 +23,7 @@ const IndexInputs = () => {
 
     const onChange: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
+        startAddingPedidos(forms)
     };
 
 
@@ -40,7 +43,6 @@ const IndexInputs = () => {
                         focused color="warning" sx={{ margin: 1 }} label="Descripcion" />
                     <Button variant='contained' color='warning' type='submit'>Enviar</Button>
                 </Grid>
-
             </form>
         </Grid>
 

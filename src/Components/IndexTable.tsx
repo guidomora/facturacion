@@ -1,5 +1,10 @@
 import Layout from '@/Layout/Layout'
+import usePedidosStore from '@/hooks/usePedidosStore';
+import { Pedidos } from '@/interfaces/pedidos';
+import { AppState } from '@/store/slices/pedidosSlice';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, styled, tableCellClasses } from '@mui/material';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -23,6 +28,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const IndexTable = () => {
+    const pedidos = useSelector((state:AppState) => state.pedidos)
+    const {startSettingPedidos} = usePedidosStore()
+
+    useEffect(() => {
+        startSettingPedidos()
+    }, [])
+    
+    console.log(pedidos);
+    
+    
     return (
         <Grid p={4}>
             <Typography fontWeight={"bold"}>Numero: 200</Typography>
