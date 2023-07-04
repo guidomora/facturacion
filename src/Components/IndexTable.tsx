@@ -1,10 +1,9 @@
-import Layout from '@/Layout/Layout'
-import usePedidosStore from '@/hooks/usePedidosStore';
+
+import usePedidosStore, { useAppSelector } from '@/hooks/usePedidosStore';
 import { Pedidos } from '@/interfaces/pedidos';
-import { AppState } from '@/store/slices/pedidosSlice';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, styled, tableCellClasses } from '@mui/material';
-import { FC, Fragment, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { Fragment, useEffect } from 'react';
+
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -28,7 +27,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const IndexTable = () => {
-    const pedidos = useSelector((state: AppState) => state.pedidos.pedidos)
+    const pedidos = useAppSelector(state => state.pedidos.pedidos)
     const { startSettingPedidos } = usePedidosStore()
 
     useEffect(() => {
@@ -38,9 +37,9 @@ const IndexTable = () => {
 
     return (
         <Grid container p={4}>
-            {pedidos.map((pedido: Pedidos, indice:number) => (
-                <TableContainer component={Paper} sx={{ marginTop: 4 }} key={indice}>
-                    <Typography fontWeight={"bold"}>Pedido: {indice}</Typography>
+            {pedidos.map((pedido: Pedidos) => (
+                <TableContainer component={Paper} sx={{ marginTop: 4 }} key={pedido.numero}>
+                    <Typography fontWeight={"bold"}>Pedido: {pedido.numero}</Typography>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
@@ -57,7 +56,7 @@ const IndexTable = () => {
                                     <StyledTableCell component="th" scope="row">{pedido.fecha}</StyledTableCell>
                                     <StyledTableCell component="th" scope="row">{pedido.encargo}</StyledTableCell>
                                     <StyledTableCell align="left">{pedido.recibe}</StyledTableCell>
-                                    <StyledTableCell align="left">{pedido.telefono}</StyledTableCell>
+                                    <StyledTableCell align="center">{pedido.telefono}</StyledTableCell>
                                     <StyledTableCell align="center">{pedido.direccion}</StyledTableCell>
                                 </StyledTableRow>
 

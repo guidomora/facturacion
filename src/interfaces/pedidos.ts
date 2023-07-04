@@ -5,4 +5,5 @@ export interface Pedidos {
     direccion:string;
     descripcion:string;
     fecha?:Date
+    numero?:number
 }
