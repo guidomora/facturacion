@@ -15,8 +15,6 @@ export default function Home() {
     <Layout title="Facturacion">
       <IndexInputs />
       <IndexTable />
-      <IndexTable />
-      <IndexTable />
     </Layout>
   )
 }
