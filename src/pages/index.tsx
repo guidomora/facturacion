@@ -1,5 +1,6 @@
 import IndexInputs from '@/Components/IndexInputs';
 import IndexTable from '@/Components/IndexTable';
+import ModalComponent from '@/Components/ModalComponent';
 import Layout from '@/Layout/Layout'
 import { Grid } from '@mui/material';
 import { Inter } from 'next/font/google'
@@ -15,6 +16,7 @@ export default function Home() {
     <Layout title="Facturacion">
       <IndexInputs />
       <IndexTable />
+      <ModalComponent />
     </Layout>
   )
 }

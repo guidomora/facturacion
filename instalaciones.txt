@@ -3,3 +3,4 @@ npm install @fontsource/roboto
 npm install @reduxjs/toolkit
 npm install react-redux
 npm install firebase
+npm install --save react-modal
