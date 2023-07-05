@@ -24,7 +24,8 @@ export const pedidosSlice = createSlice({
       direccion: string;
       descripcion: string;
       fecha?: Date
-    }[]
+    }[],
+    modalOpen: true
   },
   reducers: {
     onAddPedido: (state, { payload }: PayloadAction<Pedidos>) => {
@@ -33,11 +34,16 @@ export const pedidosSlice = createSlice({
 
     onGetPedidos: (state, { payload }) => {
       state.pedidos = payload
+    },
+
+    onSetModal: (state, {payload}) => {
+      state.modalOpen = payload
     }
+
   }
 });
 
-export const { onAddPedido, onGetPedidos } = pedidosSlice.actions;
+export const { onAddPedido, onGetPedidos, onSetModal } = pedidosSlice.actions;
 
 // fecha: "",
 //             encargo: "",

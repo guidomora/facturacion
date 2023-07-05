@@ -1,3 +1,5 @@
+import useModalStore from '@/hooks/useModalStore';
+import { useAppSelector } from '@/hooks/usePedidosStore';
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import React, { FC } from 'react'
 import Modal from "react-modal"
@@ -18,39 +20,45 @@ Modal.setAppElement("body");
 
 
 const ModalComponent = () => {
-    const onCloseModal = () => {
+    const { modalOpen } = useAppSelector((state) => state.pedidos)
+    const { setCloseModal } = useModalStore()
 
-    }
 
     return (
         <Modal
-            isOpen={true}
-            onRequestClose={onCloseModal}
+            isOpen={modalOpen}
+            onRequestClose={setCloseModal}
             style={customStyles}
             contentLabel="Example Modal"
         >
             <Typography variant="h4"> Editar pedido </Typography>
             <hr />
-            <form className="container">
+            <form className='modal'>
+                <Grid display={'flex'}>
+                    <Grid mt={2} mb={2} mr={5}>
+                        <TextField label="Fecha" />
+                    </Grid>
+                    <Grid mt={2} mb={2}>
+                        <TextField label="Encargo" />
+                    </Grid>
+                </Grid>
+                <Grid display={'flex'} flexDirection={'row'} alignContent={"center"} mb={2}>
+                    <Grid mr={5}>
+                        <Grid  mb={2}>
+                            <TextField label="Recibe" />
+                        </Grid>
+                        <Grid mt={1} mb={2}>
+                            <TextField label="Telefono" />
+                        </Grid>
+                        <Grid mt={1}>
+                            <TextField label="Direccion" />
+                        </Grid>
+                    </Grid>
+                    <Grid width={500}>
+                        <TextField label="Descripccion" rows={7} fullWidth multiline/>
+                    </Grid>
+                </Grid>
 
-                <Grid className="form-group mb-2">
-                    <TextField label="Fecha" />
-                </Grid>
-                <Grid className="form-group mb-2">
-                    <TextField label="Encargo" />
-                </Grid>
-                <Grid className="form-group mb-2">
-                    <TextField label="Recibe" />
-                </Grid>
-                <Grid className="form-group mb-2">
-                    <TextField label="Telefono" />
-                </Grid>
-                <Grid className="form-group mb-2">
-                    <TextField label="Direccion" />
-                </Grid>
-                <Grid className="form-group mb-2">
-                    <TextField label="Descripccion" />
-                </Grid>
                 <Button
                     type="submit"
                     variant="contained"

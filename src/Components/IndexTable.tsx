@@ -1,4 +1,5 @@
 
+import useModalStore from '@/hooks/useModalStore';
 import usePedidosStore, { useAppSelector } from '@/hooks/usePedidosStore';
 import { Pedidos } from '@/interfaces/pedidos';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, styled, tableCellClasses } from '@mui/material';
@@ -29,6 +30,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const IndexTable = () => {
     const pedidos = useAppSelector(state => state.pedidos.pedidos)
     const { startSettingPedidos } = usePedidosStore()
+    const {setOpenModal} = useModalStore()
 
     useEffect(() => {
         startSettingPedidos()
@@ -38,7 +40,7 @@ const IndexTable = () => {
     return (
         <Grid container p={4}>
             {pedidos.map((pedido: Pedidos) => (
-                <TableContainer component={Paper} sx={{ marginTop: 4 }} key={pedido.numero}>
+                <TableContainer component={Paper} sx={{ marginTop: 4, cursor:"pointer" }} key={pedido.numero} onDoubleClick={setOpenModal}>
                     <Typography fontWeight={"bold"}>Pedido: {pedido.numero}</Typography>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
