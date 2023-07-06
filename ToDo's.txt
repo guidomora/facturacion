@@ -1,0 +1,4 @@
+1) usePedidosStore ---> funcion para que actualice pedido
+2) Modal --> obtener la info del pedido seleccionado para editarlo
+3) Pensar bien el temas de las fechas. Seleccionado automatico o manual?
+4) borrar pedido

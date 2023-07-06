@@ -10,6 +10,7 @@ export interface AppState {
     direccion: string;
     descripcion: string;
     fecha?: Date
+    id:string
   }[];
 }
 
@@ -24,8 +25,9 @@ export const pedidosSlice = createSlice({
       direccion: string;
       descripcion: string;
       fecha?: Date
+      id?:string
     }[],
-    modalOpen: true
+    modalOpen: false
   },
   reducers: {
     onAddPedido: (state, { payload }: PayloadAction<Pedidos>) => {
@@ -38,16 +40,18 @@ export const pedidosSlice = createSlice({
 
     onSetModal: (state, {payload}) => {
       state.modalOpen = payload
+    },
+
+    onUpdatePedido: (state, {payload}) => {
+      state.pedidos = state.pedidos.map((pedido) => {
+        if (pedido.id === payload.id) {
+          return payload
+        }
+        return pedido
+      })
     }
 
   }
 });
 
 export const { onAddPedido, onGetPedidos, onSetModal } = pedidosSlice.actions;
-
-// fecha: "",
-//             encargo: "",
-//             recibe: "",
-//             telefono: "",
-//             direccion: "",
-//             descripcion: ""

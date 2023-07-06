@@ -5,7 +5,7 @@ import { Pedidos } from '@/interfaces/pedidos';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, styled, tableCellClasses } from '@mui/material';
 import { Fragment, useEffect } from 'react';
 
-
+// Los pedidos que se muestran en el inicio
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -40,7 +40,7 @@ const IndexTable = () => {
     return (
         <Grid container p={4}>
             {pedidos.map((pedido: Pedidos) => (
-                <TableContainer component={Paper} sx={{ marginTop: 4, cursor:"pointer" }} key={pedido.numero} onDoubleClick={setOpenModal}>
+                <TableContainer component={Paper} sx={{ marginTop: 4, cursor:"pointer" }} key={pedido.id} onDoubleClick={setOpenModal}>
                     <Typography fontWeight={"bold"}>Pedido: {pedido.numero}</Typography>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>

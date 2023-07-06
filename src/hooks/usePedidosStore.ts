@@ -22,7 +22,8 @@ const usePedidosStore = () => {
     const docRef = await addDoc(collection(db, "pedidos"), {
       ...pedido,
       fecha: new Date().toLocaleDateString(),
-      numero: allpedidos.length + 1
+      numero: allpedidos.length + 1,
+      id: window.crypto.randomUUID()
     });
     dispatch(onAddPedido(pedido))
   }
@@ -35,21 +36,14 @@ const usePedidosStore = () => {
       pedidos.push({
         ...doc.data(),
       });
-
+    
+      
       // Compara los numeros
       function compararDescendente(a:any, b:any) {
         return b.numero - a.numero;
       }
       // Ordena pedidos de mayor a menor
       pedidos.sort(compararDescendente);
-
-      // // Ordena los pedidos por fecha, de la mas actual a la mas vieja
-      // pedidos.sort((a:any, b:any) => {
-      //   // Comparar las fechas en formato Date
-      //   const dateA = new Date(a.fecha);
-      //   const dateB = new Date(b.fecha);
-      //   return dateB.getTime() - dateA.getTime();
-      // });
     });
     dispatch(onGetPedidos(pedidos))
   }
